@@ -1,0 +1,216 @@
+---
+title: "Data Profiling"
+subtitle: "Preliminary QA"
+execute:
+  echo: true
+  warning: false
+  message: false
+format:
+  html:
+    theme: simplex
+    toc: true
+---
+
+# Introduction
+
+The steps taken in this notebook are:
+
+- Read data into R (as a tibble)
+- Make column names R-friendly
+- Check variable types
+- Check missing values
+- Range calculations
+- Count calculations
+
+```{r setup}
+#| include: false
+
+source("utils.R")
+```
+
+# Read data
+
+For this example we will use the `maven_market.xlsx` dataset which contains data about product inventory for the fictional company Maven Market.
+
+```{r read-data}
+
+# Read data into a tibble
+inventory_path <- here("02_data/raw/maven_market.xlsx")
+
+inventory_raw <- 
+  read_excel(
+    inventory_path,
+    sheet = "Preliminary QA",
+    range = "B3:H103",
+    trim_ws = FALSE
+  )
+
+# View the head of the tibble
+head(inventory_raw)
+```
+
+**Note on the code above:** normally I would leave the `trim_ws` argument in the `read_excel()` function set to its default value of `TRUE`. This will ensure any whitespace at the start or end of a string is removed. But for the purposes of showing the full data QA steps here, I have opted not to use it.
+
+# Make column names R-friendly
+
+This is a simple step using the `janitor` package which converts the column headers to a more code-friendly format. This helps when writing the rest of the code. Note, when I first read in the data, I stored it in the variable `inventory_raw`. I always keep a copy of the raw, unprocessed data in a variable with the `_raw` suffix so that I can compare the results of any cleaning actions against the original data. Now that I am starting to clean the data, I store it in a new variable called `inventory_clean`.
+
+```{r clean-names}
+
+# Clean the column names
+inventory_clean <- inventory_raw |> 
+  clean_names()
+```
+
+## Glimpse
+
+At this point, it makes sense to use the `glimpse()` function to see the new column headings and to get some more information about the data.
+
+```{r glimpse-data}
+glimpse(inventory_clean)
+```
+
+# Check variable types
+
+Looking at the output from `glimpse()` above, I notice the following issues:
+
+- The `stock_date` column is incorrectly stored as a character variable. This should be stored as a date.
+- The `product_id_sku` column is incorrectly stored as numeric. This should be a character variable.
+
+I'm curious about the `stock_date` column. The values that we can see from `glimpse()` all look like numbers but are stored as text. If the entire column were numbers, then R would have read this in as numeric. Let's take a closer look at all of the distinct values in this column.
+
+```{r stock-date-distinct}
+#| paged-print: true
+
+# View the distinct values of stock_date and how many times they occur
+
+inventory_clean |> 
+  count(stock_date)
+```
+
+OK, so there are some values where the date has been entered as a text string. To fix this and convert all the values to dates, I'll need to use the `lubridate` and `janitor` packages and fix this in two steps. The key is to first try parsing the dates in the `dd-mmm-yy` format using `lubridate::dmy()`. If that fails (which it will for the numeric strings), I then process those failed cases as Excel numeric dates using `janitor::excel_numeric_to_date()`.
+
+```{r fix-variable-types}
+
+# Fix the incorrect variable types
+inventory_clean <- 
+  inventory_clean |> 
+  mutate(
+    stock_date = if_else(
+      is.na(dmy(stock_date)),
+      excel_numeric_to_date(as.numeric(stock_date)),
+      dmy(stock_date)
+    ),
+    product_id_sku = as.character(product_id_sku)
+  )
+```
+Let's check the results.
+
+## Stock date
+
+```{r check-results-stock-date}
+summary(inventory_clean$stock_date)
+```
+
+I can see this is now being treated correctly as a date variable and there are no empty values (if there were any empty values, the `summary()` function would include a column for the number of NAs.
+
+## Product ID
+
+```{r check-results-product-id}
+summary(inventory_clean$product_id_sku)
+```
+
+This column is now a character column with 100 values.
+
+# Check for missing values
+
+The code chunk below returns the number of missing values in each column of the dataframe.
+
+```{r count-missing-values}
+
+# Return a count per column of missing values
+colSums(is.na(inventory_clean))
+```
+
+There are no missing values in any of the columns of the dataframe.
+
+# Range calculations
+
+The `skimr` package contains a nice function to summarise each column.
+
+```{r skimr-view-of-data}
+# Use skimr to profile the data
+skim(inventory_clean)
+```
+
+Looking at the ranges in this summary I notice the following:
+
+- Unit prices range from 0 to 375. The histogram shows that the 375 is a real outlier, and knowing what this business sells it's unlikely that there would be a true unit price of 375. It's more likely that this should be 3.75.
+- There shouldn't be any products with a 0 unit price either. These will need to either be imputed or removed from the dataset. Since I don't know what the correct value is, I will remove these rows from the dataframe.
+
+```{r fix-incorrect-unit-prices}
+
+# Correct the unit prices where necessary
+inventory_clean <- 
+  inventory_clean |> 
+  mutate(
+    unit_price = case_when(
+      unit_price == 0 ~ NA,
+      product_id_sku == "80961" ~ 3.75,
+      TRUE ~ unit_price
+    )
+  ) |> 
+  filter(!is.na(unit_price))
+
+# View the results
+inventory_clean |> 
+  filter(
+    is.na(unit_price) | product_id_sku == "80961"
+  ) |> 
+  select(stock_date, product_id_sku, unit_price)
+```
+
+# Count calculations
+
+The `category` column needs to be checked in case there are multiple variations of the same category. This could be an indication of misspelling or extra whitespace. Let's review in more detail.
+
+```{r review-category-values}
+
+# Find all the distinct values of category with their count of records
+inventory_clean |> 
+  count(category) |> 
+  arrange(category)
+```
+
+By viewing the results in alphabetical order I can quickly spot spelling errors and extra whitespace in some of the category names.
+
+```{r fix-category-spellings}
+
+# Fix spelling errors in categories
+inventory_clean <- 
+  inventory_clean |> 
+  mutate(category = str_trim(category)) |> 
+  mutate(
+    category = case_when(
+      category == "Cookies Snacks & Candy" ~ "Cookies, Snacks & Candy",
+      category == "Frozen Food" ~ "Frozen Foods",
+      category == "Fruits & Vegtables" ~ "Fruits & Vegetables",
+      TRUE ~ category
+    )
+  )
+
+# View the results
+inventory_clean |> 
+  count(category) |> 
+  arrange(category)
+```
+
+# Save the output
+
+I have completed all of my preliminary QA steps. I can now save this clean dataframe to CSV so that I can use it for further profiling.
+
+```{r save-output}
+# Save the clean data
+save(inventory_clean, file = "preliminary-qa.Rdata")
+```
+

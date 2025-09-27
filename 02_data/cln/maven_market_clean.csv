@@ -1,0 +1,101 @@
+stock_date,product_name,category,product_id_sku,unit_price,units_sold,discounted
+2020-01-01,Club Chocolate Bar,"Cookies, Snacks & Candy",10660,1.35,297,0
+2020-01-01,Big Time Apple Cinnamon Waffles,Frozen Foods,62736,3.69,143,0
+2020-01-05,Excellent Apple Drink,Beverages,30389,2.98,272,0
+2020-01-05,High Top Oranges,Fruits & Vegetables,98772,1.66,183,0
+2020-01-05,Jeffers Oatmeal,Breakfast & Cereal,60396,1.54,220,0
+2020-01-17,Robust Monthly Sports Magazine,Miscellaneous,47842,2.47,251,0
+2020-01-17,Toucan Canned Mixed Fruit,Canned Goods & Soups,82439,1.4,297,0
+2020-01-23,Best Choice Potato Chips,"Cookies, Snacks & Candy",75836,NA,161,0
+2020-01-23,Club 1% Milk,Beverages,32973,1.3999999999999997,279,0
+2020-01-23,Ebony Potatoes,Fruits & Vegetables,53852,1.41,164,0
+2020-02-02,Faux Products Shampoo,Miscellaneous,20573,2.28,175,0
+2020-02-02,Faux Products Whitening Toothpaste,Miscellaneous,50789,2.17,293,0
+2020-02-06,Super Strawberry Preserves,Canned Goods & Soups,23866,2.18,114,0
+2020-02-06,Big Time Frozen Cauliflower,Frozen Foods,91693,3.32,136,0
+2020-02-06,Club Havarti Cheese,"Dairy, Eggs & Cheese",98811,3.95,244,0
+2020-02-06,Best Choice Strawberry Yogurt,"Dairy, Eggs & Cheese",70485,NA,238,0
+2020-02-10,Faux Products Dishwasher Detergent,Miscellaneous,52963,1.7399999999999998,210,0
+2020-02-14,White Label Chardonnay,"Beer, Wine & Spirits",45376,8.99,227,1
+2020-02-14,Club String Cheese,"Dairy, Eggs & Cheese",88471,1.15,130,0
+2020-02-14,Sunset Economy Toilet Brush,Miscellaneous,18364,1.79,139,0
+2020-02-18,Best Choice Raisins,"Cookies, Snacks & Candy",98770,NA,101,0
+2020-02-18,Best Choice Strawberry Fruit Roll,"Cookies, Snacks & Candy",73374,NA,194,0
+2020-02-18,Club Jack Cheese,"Dairy, Eggs & Cheese",32945,3.44,59,0
+2020-02-18,Denny Copper Pot Scrubber,Miscellaneous,91988,1.71,150,0
+2020-02-18,Fast Golden Raisins,"Cookies, Snacks & Candy",89704,1.14,141,0
+2020-02-18,Golden Lemon Popsicles,Frozen Foods,70589,1.13,161,0
+2020-02-18,Gorilla Low Fat Cottage Cheese,"Dairy, Eggs & Cheese",19576,1.57,61,0
+2020-02-21,Hermanos Potatoes,Fruits & Vegetables,18822,2.08,122,0
+2020-02-21,Horatio Fudge Brownies,"Cookies, Snacks & Candy",32573,1.59,175,0
+2020-02-25,200 MG Acetominifen,Miscellaneous,60399,3.18,164,0
+2020-02-25,Blue Label Noodle Soup,Canned Goods & Soups,80961,3.75,55,0
+2020-02-29,Pleasant Canned String Beans,Canned Goods & Soups,61238,1.6,100,1
+2020-02-29,Best Choice Vanilla Yogurt,"Dairy, Eggs & Cheese",60639,NA,98,1
+2020-02-29,Sphinx English Muffins,Breakfast & Cereal,70889,1.46,191,1
+2020-02-29,Better Canned Tuna in Oil,Canned Goods & Soups,35725,1.5,134,0
+2020-02-29,Big Time Frozen Cheese Pizza,Frozen Foods,64871,1.55,149,0
+2020-02-29,Colony Blueberry Muffins,Breakfast & Cereal,20667,2.48,88,0
+2020-03-05,High Quality Scented Toilet Tissue,Miscellaneous,94663,3.56,114,0
+2020-03-05,Tell Tale Red Delcious Apples,Fruits & Vegetables,83879,1.9,87,0
+2020-03-05,American Foot-Long Hot Dogs,Meat & Seafood,92410,2.14,120,0
+2020-03-05,Carrington Waffles,Breakfast & Cereal,37909,1.31,164,0
+2020-03-05,Excellent Cranberry Juice,Beverages,50445,3.26,172,0
+2020-03-11,Nationeel Sesame Crackers,"Cookies, Snacks & Candy",34915,2.98,151,0
+2020-03-11,Urban Large Eggs,"Dairy, Eggs & Cheese",20036,1.31,129,0
+2020-03-11,Washington Cream Soda,Beverages,28090,3.64,96,0
+2020-03-15,Blue Ribbon Conditioning Shampoo,Miscellaneous,11000,2.93,42,0
+2020-03-20,Carrington Pancakes,Breakfast & Cereal,52073,1.31,85,0
+2020-03-20,Ebony Lettuce,Fruits & Vegetables,36710,3.51,93,0
+2020-03-20,Fort West No Salt Popcorn,"Cookies, Snacks & Candy",69383,1.46,47,1
+2020-03-20,Best Choice Ramen Soup,Canned Goods & Soups,88397,NA,43,0
+2020-03-20,Tell Tale Shitake Mushrooms,Fruits & Vegetables,97095,3.51,0,0
+2020-03-20,Booker String Cheese,"Dairy, Eggs & Cheese",45898,1.66,20,0
+2020-03-26,Giant Small Brown Eggs,"Dairy, Eggs & Cheese",49014,1.71,80,0
+2020-03-26,High Quality Counter Cleaner,Miscellaneous,28606,2.91,20,0
+2020-03-26,Horatio Beef Jerky,"Cookies, Snacks & Candy",45920,1.71,34,0
+2020-03-26,Plato French Roast Coffee,Beverages,14571,2.96,62,0
+2020-03-26,Portsmouth White Zinfandel Wine,"Beer, Wine & Spirits",62338,1.7,55,0
+2020-04-01,Thresher Malted Milk Balls,"Cookies, Snacks & Candy",95573,1.58,22,0
+2020-04-01,Amigo Fresh Salmon,Meat & Seafood,80276,2.96,78,0
+2020-04-01,Better Vegetable Soup,Canned Goods & Soups,73889,2.21,35,1
+2020-04-01,Blue Label Canned Beets,Canned Goods & Soups,21335,3.83,91,0
+2020-04-01,Golden Fajita French Fries,Frozen Foods,51853,1.59,1,0
+2020-04-07,High Quality Plastic Fork (set of 12),Miscellaneous,26298,2.64,27,0
+2020-04-07,Club 2% Milk,Beverages,29451,2.19,66,0
+2020-04-10,Thresher White Chocolate Bar,"Cookies, Snacks & Candy",71537,2.49,46,0
+2020-04-10,Big Time Frozen Pepperoni Pizza,Frozen Foods,13119,1.13,34,0
+2020-04-10,Carrington Fajita French Fries,Frozen Foods,16754,2.22,30,0
+2020-04-10,White Label Canned Peaches,Canned Goods & Soups,84230,2.19,35,0
+2020-04-10,Hilltop Buffered Aspirin,Miscellaneous,10074,2.49,18,0
+2020-04-14,PigTail Home Style French Fries,Frozen Foods,28607,2.99,30,0
+2020-04-14,Steady Apricot Shampoo,Miscellaneous,67811,2.35,43,0
+2020-04-14,Tell Tale Fresh Lima Beans,Fruits & Vegetables,98560,3.17,23,0
+2020-04-14,Bravo Canned Tuna in Water,Canned Goods & Soups,96012,1.67,22,0
+2020-04-20,CDR Hot Chocolate,Beverages,61137,2.78,21,0
+2020-04-20,Fabulous Diet Cola,Beverages,55655,2.28,35,0
+2020-04-20,PigTail Pork Chops,Meat & Seafood,28279,3.9500000000000006,3,0
+2020-04-20,Landslide Hot Chocolate,Beverages,74257,1.89,11,0
+2020-04-24,Blue Ribbon Sausage,Meat & Seafood,68624,2.23,26,0
+2020-04-24,Nationeel No Salt Popcorn,"Cookies, Snacks & Candy",34403,2.45,37,0
+2020-04-24,Pearl Chardonnay Wine,"Beer, Wine & Spirits",26928,7.99,1,0
+2020-04-24,PigTail Frozen Corn,Frozen Foods,46227,3.7,26,0
+2020-04-24,Best Choice Chicken Filets,Meat & Seafood,55577,NA,33,0
+2020-04-28,Urban Egg Substitute,"Dairy, Eggs & Cheese",15330,1.3,23,0
+2020-04-28,Strawberry Fruit Roll,"Cookies, Snacks & Candy",90404,3.25,27,0
+2020-04-28,Hermanos Red Pepper,Fruits & Vegetables,45463,1.8,32,0
+2020-05-03,Moms Low Fat Bologna,Meat & Seafood,84849,2.1,41,1
+2020-05-03,Plato Ice Cream Sandwiches,Frozen Foods,77862,1.13,39,1
+2020-05-06,Red Wing 60 Watt Lightbulb,Miscellaneous,33595,1.33,25,1
+2020-05-06,Sunset 100 Watt Lightbulb,Miscellaneous,39069,1.64,13,0
+2020-05-09,Washington Apple Drink,Beverages,30689,3.51,39,0
+2020-05-09,Carrington Pancake Mix,Breakfast & Cereal,49175,2.47,37,0
+2020-05-09,Carrington Popsicles,Frozen Foods,68891,2.1,25,0
+2020-05-14,Horatio Dried Apples,"Cookies, Snacks & Candy",86442,1.77,13,1
+2020-05-14,Red Wing Plastic Spoons,Miscellaneous,26169,3.46,17,1
+2020-05-14,Best Choice Raspberry Fruit Roll,"Cookies, Snacks & Candy",67869,NA,9,0
+2020-05-20,Fantastic Muffins,Breakfast & Cereal,28159,2.12,12,0
+2020-05-20,High Top Shitake Mushrooms,Fruits & Vegetables,32527,1.49,8,0
+2020-05-24,Low-Fat Crackers,"Cookies, Snacks & Candy",79724,2.49,3,0
+2020-05-30,Horatio Dried Apricots,"Cookies, Snacks & Candy",19405,2.97,5,0
+2020-05-30,PigTail Chicken TV Dinner,Frozen Foods,86045,1.17,2,0

@@ -1,0 +1,114 @@
+---
+title: "Data Profiling"
+subtitle: "Univariate Profiling"
+execute:
+  echo: true
+  warning: false
+  message: false
+format:
+  html:
+    theme: simplex
+    toc: true
+---
+
+# Introduction
+
+This is the second notebook in the series of data profiling steps. Make sure to run the first notebook before running this one. The steps taken in this notebook are:
+
+- Categorical distributions
+
+```{r setup}
+#| include: false
+
+source("utils.R")
+load("preliminary-qa.Rdata")
+```
+
+# Categorical distributions
+
+Let's use `glimpse()` to see where the categorical variables are:
+
+```{r find-categorical-variables}
+
+glimpse(inventory_clean)
+```
+
+The categorical variables are `product_name`, `category` and `product_id_sku`. We can get an overview of these variables using `skimr`.
+
+```{r skimr-categorical}
+inventory_clean |> 
+  select(where(is.character)) |> 
+  skim()
+```
+
+Both `product_name` and `product_id_sku` have the same number of unique values as the number of rows in the dataframe, meaning that every record is unique. These are the primary keys of the dataframe, and therefore we do not need to visualise the distribution of their values.
+
+## Category
+
+Let's look at the frequency chart for `category`.
+
+```{r frequency-chart-category}
+# Frequency chart for category
+inventory_clean |> 
+  count(category, sort = TRUE) |> 
+  mutate(prop = n / sum(n))
+```
+
+Here we can see there are 10 categories and the top value represents 17% of the data.
+
+# Numerical distributions
+
+Our numerical variables are `unit_price` and `units_sold`. We can view the distribution of each of these in a histogram and a density plot.
+
+## Unit price
+
+```{r histogram-unit-price}
+
+# Histogram for unit_price
+inventory_clean |> 
+  ggplot(
+    aes(x = unit_price)
+  ) +
+  geom_histogram(
+    aes(y = after_stat(density)),
+    binwidth = 1,
+    fill = "#FF4F5C"
+  ) +
+  geom_density(
+    colour = "darkslategray",
+    linewidth = 1.5
+  )
+```
+
+This variable seems to have an outlier at the higher end. Let's see if we can identify the record with the outlier.
+
+```{r unit-price-outlier}
+
+# Review the top 10 highest values for unit_price
+inventory_clean |> 
+  select(product_id_sku, product_name, category, unit_price) |> 
+  slice_max(unit_price, n = 10)
+```
+
+
+## Units sold
+
+```{r histogram-units-sold}
+
+# Histogram for units sold
+inventory_clean |> 
+  ggplot(
+    aes(x = units_sold)
+  ) +
+  geom_histogram(
+    aes(y = after_stat(density)),
+    binwidth = 10,
+    fill = "#FF4F5C"
+  ) +
+  geom_density(
+    color = "darkslategray",
+    linewidth = 1.5
+  )
+```
+
+This distribution is also left-skewed with most values being less than 25.
