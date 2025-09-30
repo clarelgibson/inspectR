@@ -15,7 +15,8 @@ format:
 
 This is the second notebook in the series of data profiling steps. Make sure to run the first notebook before running this one. The steps taken in this notebook are:
 
-- Categorical distributions
+-   Categorical distributions
+-   Numerical distributions
 
 ```{r setup}
 #| include: false
@@ -58,9 +59,25 @@ Here we can see there are 10 categories and the top value represents 17% of the 
 
 # Numerical distributions
 
-Our numerical variables are `unit_price` and `units_sold`. We can view the distribution of each of these in a histogram and a density plot.
+Our numerical variables are `unit_price` and `units_sold`. We can also include the date value `stock_date` here. We can use `skimr` again to get some preliminary statistics.
+
+```{r skimr-numerical}
+inventory_clean |> 
+  select(!where(is.character)) |> 
+  skim()
+```
+
+We can view the distribution of each of these in a histogram and a density plot.
 
 ## Unit price
+
+-   Max: `r round(max(inventory_clean$unit_price),2)`
+-   Min: `r round(min(inventory_clean$unit_price),2)`
+-   Mean: `r round(mean(inventory_clean$unit_price),2)`
+-   Median: `r round(median(inventory_clean$unit_price),2)`
+-   Variance: `r round(var(inventory_clean$unit_price),2)`
+-   Standard deviation: `r round(sd(inventory_clean$unit_price),2)`
+-   Skewness: `r round(skewness(inventory_clean$unit_price),2)`
 
 ```{r histogram-unit-price}
 
@@ -90,8 +107,17 @@ inventory_clean |>
   slice_max(unit_price, n = 10)
 ```
 
+It looks like there are 2 wine products that have a much higher unit price than all of the other products.
 
 ## Units sold
+
+-   Max: `r round(max(inventory_clean$units_sold),2)`
+-   Min: `r round(min(inventory_clean$units_sold),2)`
+-   Mean: `r round(mean(inventory_clean$units_sold),2)`
+-   Median: `r round(median(inventory_clean$units_sold),2)`
+-   Variance: `r round(var(inventory_clean$units_sold),2)`
+-   Standard deviation: `r round(sd(inventory_clean$units_sold),2)`
+-   Skewness: `r round(skewness(inventory_clean$units_sold),2)`
 
 ```{r histogram-units-sold}
 
